@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>RoboMaster 局域网直播</title>
+  <link rel="stylesheet" href="/styles.css?v=4">
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">RM LOCAL LIVE</p>
+        <h1>RoboMaster 720P 主视角</h1>
+      </div>
+      <span id="health" class="badge pending">连接中</span>
+    </header>
+
+    <section class="player-shell">
+      <video id="rm-video" controls autoplay muted playsinline preload="auto"></video>
+      <button id="play-button" class="play-button" type="button">播放直播</button>
+      <p id="player-state" class="player-state">正在连接 720P 主视角…</p>
+    </section>
+
+    <section class="status-grid">
+      <article><span>当前直播</span><strong id="source">正在获取</strong></article>
+      <article><span>缓存占用</span><strong id="cache">—</strong></article>
+      <article><span>缓存命中</span><strong id="hits">—</strong></article>
+      <article><span>预计节省 WAN</span><strong id="saved">—</strong></article>
+    </section>
+
+    <section class="notice">
+      <div>
+        <h2>需要奖励、弹幕和聊天室？</h2>
+        <p>安装局域网扩展后继续使用官方直播页面，视频仍会经过本地缓存。</p>
+      </div>
+      <a href="/extension/">获取 Chrome / Edge 扩展</a>
+    </section>
+  </main>
+  <script src="/assets/hls-1.6.16.min.js"></script>
+  <script src="/app.js?v=4"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ "$INTERFACE" = "lan" ] || exit 0
+
+case "$ACTION" in
+    ifup|ifupdate)
+        /etc/init.d/rm-live-cache enabled || exit 0
+        /etc/init.d/rm-live-cache reload
+        ;;
+esac

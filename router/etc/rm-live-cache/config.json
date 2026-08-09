@@ -1,0 +1,12 @@
+{
+  "listen": "127.0.0.1",
+  "port": 8096,
+  "source_resolution": "middle",
+  "source_label": "720p",
+  "cache_dir": "/tmp/rm-live-cache/segments",
+  "cache_max_bytes": 33554432,
+  "segment_ttl_seconds": 300,
+  "playlist_ttl_seconds": 0.8,
+  "source_ttl_seconds": 10,
+  "upstream_timeout_seconds": 12
+}

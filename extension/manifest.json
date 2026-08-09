@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "RoboMaster 局域网直播缓存",
+  "version": "1.2.0",
+  "description": "保留官方奖励、弹幕和聊天室，同时将 RoboMaster 720P 主视角切换到局域网缓存。",
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": [
+    "https://www.robomaster.com/*",
+    "https://rtmp.djicdn.com/*",
+    "http://192.168.8.2/*",
+    "http://rm.lan/*",
+    "http://rm.local/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      { "id": "rm_local_redirect", "enabled": true, "path": "rules.json" }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.robomaster.com/live*"],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "world": "MAIN"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "RoboMaster 局域网缓存"
+  }
+}

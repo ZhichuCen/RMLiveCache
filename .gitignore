@@ -1,0 +1,10 @@
+# Local router backups may contain deployment-specific configuration.
+backups/
+
+# Python bytecode and test caches.
+__pycache__/
+*.py[cod]
+
+# macOS metadata.
+.DS_Store
+._*

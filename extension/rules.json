@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "url": "http://192.168.8.2/live.m3u8"
+      }
+    },
+    "condition": {
+      "regexFilter": "^https://rtmp\\.djicdn\\.com/robomaster/.*\\.m3u8(?:\\?.*)?$",
+      "initiatorDomains": ["www.robomaster.com"],
+      "resourceTypes": ["xmlhttprequest", "media"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "header": "Access-Control-Allow-Origin",
+          "operation": "set",
+          "value": "https://www.robomaster.com"
+        },
+        {
+          "header": "Access-Control-Allow-Private-Network",
+          "operation": "set",
+          "value": "true"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "|http://192.168.8.2/",
+      "initiatorDomains": ["www.robomaster.com"],
+      "resourceTypes": ["xmlhttprequest", "media", "other"]
+    }
+  }
+]

@@ -1,0 +1,30 @@
+table inet rm_live_cache {
+    set cdn_v4 {
+        type ipv4_addr
+        flags interval
+    }
+
+    set cdn_v6 {
+        type ipv6_addr
+        flags interval
+    }
+
+    set official_v4 {
+        type ipv4_addr
+        flags interval
+    }
+
+    chain block_direct_video {
+        type filter hook prerouting priority raw - 10; policy accept;
+        iifname "br-lan" ip daddr @cdn_v4 meta l4proto { tcp, udp } th dport 443 counter drop
+        iifname "br-lan" ip6 daddr @cdn_v6 meta l4proto { tcp, udp } th dport 443 counter drop
+    }
+
+    # Some China Mobile RoboMaster CDN nodes are unreachable when forwarded
+    # directly from LAN clients, while router-originated/Clash traffic works.
+    # Send only official-site traffic to OpenClash's transparent TCP listener.
+    chain proxy_official {
+        type nat hook prerouting priority dstnat - 1; policy accept;
+        iifname "br-lan" ip daddr @official_v4 tcp dport { 80, 443 } redirect to :7892
+    }
+}
